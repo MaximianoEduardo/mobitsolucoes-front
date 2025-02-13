@@ -7,7 +7,25 @@
     <div class="flex flex-1">
         <div class="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
         <div class="flex gap-2">
-            teste
+            <div class="stats">
+                <div class="stat">
+                  <h2>Total de Clientes</h2>
+                  <p>{{ totalClientes$ | async }}</p>
+                </div>
+                <div class="stat">
+                  <h2>Total de Planos</h2>
+                  <p>{{ totalPlanos$ | async }}</p>
+                </div>
+              </div>
+            
+              <div class="clientes-por-plano">
+                <h2>Clientes por Plano</h2>
+                <ul>
+                  <li *ngFor="let plano of planos$ | async">
+                    {{ plano.nome }}: {{ (clientesPorPlano$ | async)?.[plano.id] || 0 }}
+                  </li>
+                </ul>
+              </div>
         </div>
         <div class="flex gap-2 flex-1">
         </div>
