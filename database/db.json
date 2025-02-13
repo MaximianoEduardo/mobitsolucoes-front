@@ -1,0 +1,65 @@
+{
+    "clientes": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "nome": "João Silva",
+        "cpf": "123.456.789-00",
+        "telefone": "(11) 99999-9999",
+        "email": "joao.silva@example.com"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "nome": "Maria Oliveira",
+        "cpf": "987.654.321-00",
+        "telefone": "(11) 88888-8888",
+        "email": "maria.oliveira@example.com"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "nome": "Carlos Souza",
+        "cpf": "456.789.123-00",
+        "telefone": "(11) 77777-7777",
+        "email": "carlos.souza@example.com"
+      }
+    ],
+    "planos": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "nome": "Plano Básico",
+        "preco": 49.90,
+        "franquiaDados": 5,
+        "minutosLigacao": 100
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440004",
+        "nome": "Plano Intermediário",
+        "preco": 79.90,
+        "franquiaDados": 10,
+        "minutosLigacao": 300
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440005",
+        "nome": "Plano Premium",
+        "preco": 129.90,
+        "franquiaDados": 20,
+        "minutosLigacao": 600
+      }
+    ],
+    "clientesPlanos": [
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440006",
+        "clienteId": "550e8400-e29b-41d4-a716-446655440000",
+        "planoId": "550e8400-e29b-41d4-a716-446655440003"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440007",
+        "clienteId": "550e8400-e29b-41d4-a716-446655440001",
+        "planoId": "550e8400-e29b-41d4-a716-446655440004"
+      },
+      {
+        "id": "550e8400-e29b-41d4-a716-446655440008",
+        "clienteId": "550e8400-e29b-41d4-a716-446655440002",
+        "planoId": "550e8400-e29b-41d4-a716-446655440005"
+      }
+    ]
+  }
