@@ -1,0 +1,19 @@
+
+<div class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+    <div class="mt-8 flex flex-col gap-2">
+
+        <div class="justify-between gap-10">
+            <div class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+                <div class="mt-8 flex flex-col gap-2">
+
+                    <ng-container *ngFor="let link of links; let keyidx = index">
+                        <app-sidebar-link [link]="link"></app-sidebar-link>
+                    </ng-container>
+                    
+            </div>
+                </div>
+            </div>
+            <div>
+        </div>
+    </div>
+  </div>

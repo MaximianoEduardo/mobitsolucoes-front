@@ -1,0 +1,8 @@
+
+<div (mouseenter)="setOpen()" 
+    [@openClose]="open ? 'open' : 'closed'"
+    (mouseleave)="setOpen()" 
+    class=" h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] flex-shrink-0">
+    <app-sidebar-body  class="justify-between gap-10">
+    </app-sidebar-body>
+</div>
