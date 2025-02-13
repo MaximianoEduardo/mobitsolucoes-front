@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './page/dashboard.component';
+import { SideBarModule } from '../shared/ui/sidebard/sidebar.module';
 
 
 
@@ -8,7 +9,8 @@ import { DashboardComponent } from './page/dashboard.component';
   declarations: [],
   imports: [
     CommonModule,
-    DashboardComponent
+    DashboardComponent,
+    SideBarModule
   ],
   exports: [DashboardComponent]
 })
