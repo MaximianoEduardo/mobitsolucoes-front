@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppState } from '../../../core/models/state';
 import { ClientePlano } from '../../../core/models/cliente-plano';
-import { carregarClientesSucesso, carregarPlanosSucesso, carregarClientesPlanosSucesso, atualizarDashboard } from './dashboard.actions';
+import { carregarClientesSucesso, carregarPlanosSucesso, carregarClientesPlanosSucesso, atualizarDashboard, atualizarDashboardSucess } from './dashboard.actions';
 
 export const initialState: AppState = {
   clientes: [],
@@ -10,7 +10,7 @@ export const initialState: AppState = {
   dashboard: {
     totalClientes: 0,
     totalPlanos: 0,
-    clientesPorPlano: {},
+    clientesPorPlano: {}
   },
 };
 
@@ -33,15 +33,24 @@ export const dashboardReducer = createReducer(
     dashboard: {
       totalClientes: state.clientes.length,
       totalPlanos: state.planos.length,
-      clientesPorPlano: calcularClientesPorPlano(state.clientesPlanos),
+      clientesPorPlano: calcularClientesPorPlano(state.clientesPlanos, state.planos),
     },
+  })),
+  on(atualizarDashboardSucess, (state, { dashboard }) => ({
+    ...state,
+    dashboard
   }))
 );
 
-// Função auxiliar para calcular clientes por plano
-function calcularClientesPorPlano(clientesPlanos: ClientePlano[]): { [planoId: string]: number } {
-  return clientesPlanos.reduce((acc, curr) => {
-    acc[curr.planoId] = (acc[curr.planoId] || 0) + 1;
+function calcularClientesPorPlano(clientesPorPlano: ClientePlano[], planos: { id: string, nome: string }[]): { [planoNome: string]: number } {
+  const planoMap = planos.reduce((acc, plano) => {
+    acc[plano.id] = plano.nome;
     return acc;
-  }, {} as { [planoId: string]: number });
+  }, {} as { [id: string]: string });
+
+  return clientesPorPlano.reduce((acc, curr) => {
+    const planoNome = planoMap[curr.planoId] || 'Desconhecido';
+    acc[planoNome] = (acc[planoNome] || 0) + 1;
+    return acc;
+  }, {} as { [planoNome: string]: number });
 }

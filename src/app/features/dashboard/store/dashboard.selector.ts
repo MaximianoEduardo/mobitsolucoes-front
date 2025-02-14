@@ -32,3 +32,22 @@ export const selectClientesPorPlano = createSelector(
   selectDashboardState,
   (state) => state.dashboard.clientesPorPlano
 );
+
+
+export const selectDashboard = createSelector(
+  selectDashboardState,
+  (state) => state.dashboard
+);
+
+export const selectAllDataLoaded = createSelector(
+  selectTotalClientes,
+  selectTotalPlanos,
+  selectClientesPlanos,
+  (totalClientes, totalPlanos, clientesPlanos) => {
+    return (
+      totalClientes !== undefined &&
+      totalPlanos !== undefined &&
+      clientesPlanos !== undefined &&
+      clientesPlanos.length > 0
+    );
+  });

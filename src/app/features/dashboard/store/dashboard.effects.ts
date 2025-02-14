@@ -1,15 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { DashboardService } from '../service/dashboard.service';
-import { carregarClientes, carregarClientesSucesso, carregarPlanos, carregarPlanosSucesso, carregarClientesPlanos, carregarClientesPlanosSucesso, atualizarDashboard } from './dashboard.actions';
+import { carregarClientes, carregarClientesSucesso, carregarPlanos, carregarPlanosSucesso, carregarClientesPlanos, carregarClientesPlanosSucesso, atualizarDashboard, atualizarDashboardSucess } from './dashboard.actions';
+import { selectClientesPlanos, selectTotalClientes, selectTotalPlanos } from './dashboard.selector';
 
 @Injectable()
 export class DashboardEffects {
   constructor(
     private actions$: Actions,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private store: Store
   ) {}
 
   carregarClientes$ = createEffect(
@@ -39,8 +42,7 @@ export class DashboardEffects {
           )
         )
       );
-    },
-    { functional: true }
+    }
   );
 
   carregarClientesPlanos$ = createEffect(
@@ -54,8 +56,7 @@ export class DashboardEffects {
           )
         )
       )
-    },
-    { functional: true }
+    }
   );
 
   atualizarDashboard$ = createEffect(
@@ -63,8 +64,8 @@ export class DashboardEffects {
       return actions$.pipe(
         ofType(atualizarDashboard),
         switchMap(() =>
-          dashboardService.getClientesPlanos().pipe(
-            map(() => atualizarDashboard()),
+          dashboardService.getDashboardUpdated().pipe(
+            map((dashboard) => atualizarDashboardSucess({ dashboard })),
             catchError(() => of({ type: '[Dashboard] Atualizar Dashboard Falha' }))
           )
         )
