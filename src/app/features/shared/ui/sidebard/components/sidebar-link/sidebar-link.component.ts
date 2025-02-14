@@ -1,15 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface linkInterface {
   label: string,
   href: string,
-  icon: string | null
+  icon: string
 }
 
 
 @Component({
   selector: 'app-sidebar-link',
-  imports: [],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './sidebar-link.component.html',
   styleUrl: './sidebar-link.component.css'
 })

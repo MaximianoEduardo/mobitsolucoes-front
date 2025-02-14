@@ -12,13 +12,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state(
         'open',
         style({
-          width: '200px'
+          width: '250px'
         })
       ),
       state(
         'closed',
         style({
-          width: "150px"
+          width: "180px"
         })
       ),
       transition('true => false', [animate('1s easeOutCirc')]),

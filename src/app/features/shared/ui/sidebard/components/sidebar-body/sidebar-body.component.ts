@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-body',
-  imports: [SidebarLinkComponent, CommonModule],
+  imports: [SidebarLinkComponent, CommonModule, ],
   templateUrl: './sidebar-body.component.html',
   styleUrl: './sidebar-body.component.css'
 })
@@ -14,22 +14,22 @@ export class SidebarBodyComponent {
     {
       label: "Dashboard",
       href: "#",
-      icon: "",
+      icon: "dashboard",
     },
     {
-      label: "Profile",
+      label: "Planos",
       href: "#",
-      icon: "",
+      icon: "event_note"  ,
     },
     {
-      label: "Settings",
+      label: "Clientes",
       href: "#",
-      icon: "",
+      icon: "manage_accounts",
     },
     {
-      label: "Logout",
+      label: "Clientes a Planos",
       href: "#",
-      icon: "",
+      icon: "swipe_vertical",
     },
   ];
 
