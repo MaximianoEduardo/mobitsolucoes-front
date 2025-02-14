@@ -9,26 +9,43 @@
         <div class="flex gap-2">
             <div class="stats">
                 <div class="stat">
+                  <app-cards [card]="combinedData().totalClientes">
+                    
+                  </app-cards>
                   <h2>Total de Clientes</h2>
-                  <p>{{ totalClientes$ | async }}</p>
+                  <p>{{ totalClientes() }}</p>
                 </div>
                 <div class="stat">
                   <h2>Total de Planos</h2>
-                  <p>{{ totalPlanos$ | async }}</p>
+                  <p>{{ totalPlanos() }}</p>
                 </div>
               </div>
             
               <div class="clientes-por-plano">
                 <h2>Clientes por Plano</h2>
                 <ul>
-                  <li *ngFor="let plano of planos$ | async">
+                  <!-- <li *ngFor="let plano of planos$ | async">
                     {{ plano.nome }}: {{ (clientesPorPlano$ | async)?.[plano.id] || 0 }}
-                  </li>
+                  </li> -->
                 </ul>
               </div>
         </div>
-        <div class="flex gap-2 flex-1">
+        <div class="flex flex-row p-2 w-full h-full">
+          <div class=" w-1/2">
+
+
+          
+            <app-chart-pie [clientesPorPlano]="clientesPorPlano()"></app-chart-pie>
+  
+          </div>
+          <div class=" w-1/2">
+          
+            <app-chart-bars [clientes]="clientes()"></app-chart-bars>
+
+  
+          </div>
         </div>
+        
         </div>
     </div>
 </div>

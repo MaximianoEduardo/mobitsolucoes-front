@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, effect, signal, Signal } from '@angular/core';
 import { SideBarModule } from '../../shared/ui/sidebard/sidebar.module';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,39 +7,65 @@ import { Cliente } from '../../../core/models/cliente.model';
 import { Plano } from '../../../core/models/planos.model';
 import { AppState } from '../../../core/models/state';
 import { carregarClientes, carregarPlanos, carregarClientesPlanos, atualizarDashboard } from '../store/dashboard.actions';
-import { selectClientes, selectPlanos, selectClientesPlanos, selectTotalClientes, selectTotalPlanos, selectClientesPorPlano } from '../store/dashboard.selector';
+import { selectClientes, selectPlanos, selectClientesPlanos, selectTotalClientes, selectTotalPlanos, selectClientesPorPlano, selectAllDataLoaded } from '../store/dashboard.selector';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { CardsComponent } from '../../shared/ui/cards/cards.component';
+import { ChartPieComponent } from "../../shared/ui/chart-pie/chart-pie.component";
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ChartBarsComponent } from "../../shared/ui/chart-bars/chart-bars.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SideBarModule, AsyncPipe, CommonModule],
+  imports: [SideBarModule,
+    CommonModule,
+    CardsComponent, ChartPieComponent, ChartBarsComponent],
   providers: [HttpClient],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  clientes$: Observable<Cliente[]>;
+  clientes: Signal<Cliente[]>;
   planos$: Observable<Plano[]>;
-  clientesPlanos$: Observable<ClientePlano[]>;
-  totalClientes$: Observable<number>;
-  totalPlanos$: Observable<number>;
-  clientesPorPlano$: Observable<{ [planoId: string]: number }>;
+  totalClientes: Signal<number>;
+  totalPlanos: Signal<number>;
+  clientesPlanos: Signal<ClientePlano[]>;
+  clientesPorPlano: Signal<{ [planoId: string]: number; } | {}>
+  allDataLoaded: Signal<boolean>;
+  combinedData = computed(() => {
+    return {
+      totalClientes: this.totalClientes(),
+      totalPlanos: this.totalPlanos(),
+      clientesPorPlano: this.clientesPlanos()
+    };
+  });
 
   constructor(private store: Store<AppState>) {
-    this.clientes$ = this.store.select(selectClientes);
+    this.clientes = toSignal(this.store.select(selectClientes), { initialValue: [ ] as Cliente[] });
     this.planos$ = this.store.select(selectPlanos);
-    this.clientesPlanos$ = this.store.select(selectClientesPlanos);
-    this.totalClientes$ = this.store.select(selectTotalClientes);
-    this.totalPlanos$ = this.store.select(selectTotalPlanos);
-    this.clientesPorPlano$ = this.store.select(selectClientesPorPlano);
+    this.totalClientes = toSignal(this.store.select(selectTotalClientes), { initialValue: 0 });
+    this.totalPlanos = toSignal(this.store.select(selectTotalPlanos), { initialValue: 0 });
+    this.clientesPlanos = toSignal(this.store.select(selectClientesPlanos), { initialValue: [] as ClientePlano[] });
+    this.clientesPorPlano = toSignal(this.store.select(selectClientesPorPlano), { initialValue: {} ,});
+    this.allDataLoaded = toSignal(this.store.select(selectAllDataLoaded), { initialValue: false });
+
+
+    effect(() => {
+      if (this.allDataLoaded()) {
+        console.log('Todos os dados foram carregados:', this.combinedData());
+        this.store.dispatch(
+          atualizarDashboard()
+        );
+      }
+    });
   }
 
   ngOnInit(): void {
-    // Dispara as ações para carregar os dados
+    // Dispara as ações para carregar os dados;
+
     this.store.dispatch(carregarClientes());
     this.store.dispatch(carregarPlanos());
-    this.store.dispatch(carregarClientesPlanos());
-    this.store.dispatch(atualizarDashboard());
+    this.store.dispatch(carregarClientesPlanos())
+    
   }
 }
