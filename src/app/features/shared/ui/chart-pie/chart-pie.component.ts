@@ -61,13 +61,6 @@ export class ChartPieComponent implements OnDestroy {
       })
     );
 
-    console.log('ChartPie ==>',Object.keys(this.clientesPorPlano).map((planoId) => ({
-      plano: `Plano ${planoId}`,
-      clientes: this.clientesPorPlano[planoId],
-    })))
-
-
-
 
     // Configurar os dados
     const data = Object.keys(this.clientesPorPlano).map((planoId) => ({
@@ -84,8 +77,19 @@ export class ChartPieComponent implements OnDestroy {
         x: am5.percent(50),
         marginTop: 15,
         marginBottom: 15,
+        maxWidth: 150,
       })
     );
+
+    series.labels.template.setAll({
+      fontSize: 11,
+      text: "{plano}",
+      maxWidth: 150,
+      oversizedBehavior: "wrap"
+    });
+    series.slices.template.set("tooltipText", "");
+
+
 
     legend.data.setAll(series.dataItems);
   }
