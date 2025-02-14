@@ -3,12 +3,14 @@
       {
         "id": "550e8400-e29b-41d4-a716-446655440000",
         "nome": "João Silva",
+        "dataCadastro": "2024-09-01",
         "cpf": "123.456.789-00",
         "telefone": "(11) 99999-9999",
         "email": "joao.silva@example.com"
       },
       {
         "id": "550e8400-e29b-41d4-a716-446655440001",
+        "dataCadastro": "2024-10-01",
         "nome": "Maria Oliveira",
         "cpf": "987.654.321-00",
         "telefone": "(11) 88888-8888",
@@ -17,6 +19,7 @@
       {
         "id": "550e8400-e29b-41d4-a716-446655440002",
         "nome": "Carlos Souza",
+        "dataCadastro": "2024-11-01",
         "cpf": "456.789.123-00",
         "telefone": "(11) 77777-7777",
         "email": "carlos.souza@example.com"
