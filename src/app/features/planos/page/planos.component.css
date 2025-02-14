@@ -1,0 +1,10 @@
+.planos-container {
+    width: 100%;
+    height: 100vh;
+}
+
+:host {
+    display: block;
+    height: 100vh;
+    width: 100%;
+  }

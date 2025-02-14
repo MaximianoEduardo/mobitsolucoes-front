@@ -1,0 +1,26 @@
+<div class="planos-container">
+  <div class="flex flex-1 h-full">
+    <div
+      class="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-10">
+        <div
+          className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+
+          <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+            Login to aceternity if you can because we don&apos;t have a login flow
+            yet
+          </p>
+
+
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email" required />
+            <!-- @if (email.invalid) {
+              <mat-error>{{errorMessage()}}</mat-error>
+              } -->
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
