@@ -18,7 +18,7 @@ export class ChartBarsComponent {
   
   // Create root and chart
 
-  private root!: am5.Root;
+  private rootBars!: am5.Root;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private zone: NgZone) {}
 
@@ -44,13 +44,13 @@ export class ChartBarsComponent {
 
   renderChart(): void {
     // Criar a raiz do gráfico
-    this.root = am5.Root.new('chart-bars');
+    this.rootBars = am5.Root.new('chart-bars');
 
     // Aplicar tema animado
-    this.root.setThemes([am5themes_Animated.new(this.root)]);
+    this.rootBars.setThemes([am5themes_Animated.new(this.rootBars)]);
 
-    const chart = this.root.container.children.push(
-      am5xy.XYChart.new(this.root, {
+    const chart = this.rootBars.container.children.push(
+      am5xy.XYChart.new(this.rootBars, {
         panX: true,
         panY: true,
         wheelX: 'panX',
@@ -61,28 +61,28 @@ export class ChartBarsComponent {
 
     // Configurar o eixo X (meses)
     const xAxis = chart.xAxes.push(
-      am5xy.CategoryAxis.new(this.root, {
+      am5xy.CategoryAxis.new(this.rootBars, {
         categoryField: 'mes',
-        renderer: am5xy.AxisRendererX.new(this.root, {}),
-        tooltip: am5.Tooltip.new(this.root, {}),
+        renderer: am5xy.AxisRendererX.new(this.rootBars, {}),
+        tooltip: am5.Tooltip.new(this.rootBars, {}),
       })
     );
 
     // Configurar o eixo Y (quantidade de clientes)
     const yAxis = chart.yAxes.push(
-      am5xy.ValueAxis.new(this.root, {
-        renderer: am5xy.AxisRendererY.new(this.root, {}),
+      am5xy.ValueAxis.new(this.rootBars, {
+        renderer: am5xy.AxisRendererY.new(this.rootBars, {}),
       })
     );
 
     const series = chart.series.push(
-      am5xy.ColumnSeries.new(this.root, {
+      am5xy.ColumnSeries.new(this.rootBars, {
         name: 'Clientes',
         xAxis: xAxis,
         yAxis: yAxis,
         valueYField: 'clientes',
         categoryXField: 'mes',
-        tooltip: am5.Tooltip.new(this.root, {
+        tooltip: am5.Tooltip.new(this.rootBars, {
           labelText: '{valueY} cliente(s) em {categoryX}',
         }),
       })
@@ -95,7 +95,7 @@ export class ChartBarsComponent {
     series.data.setAll(data);
 
     // Adicionar cursor para interatividade
-    chart.set('cursor', am5xy.XYCursor.new(this.root, {}));
+    chart.set('cursor', am5xy.XYCursor.new(this.rootBars, {}));
   }
 
   processarDados(clientes: Cliente[]): { mes: string; clientes: number }[] {
@@ -131,8 +131,8 @@ export class ChartBarsComponent {
   ngOnDestroy() {
     // Clean up chart when the component is removed
     this.browserOnly(() => {
-      if (this.root) {
-        this.root.dispose();
+      if (this.rootBars) {
+        this.rootBars.dispose();
       }
     });
   }
