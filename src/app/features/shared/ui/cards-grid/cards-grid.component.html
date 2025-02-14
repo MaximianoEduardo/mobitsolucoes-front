@@ -1,0 +1,14 @@
+<div
+        (mouseenter)="handleOver()" 
+        [@openClose]="open ? 'open' : 'closed'"
+        (mouseleave)="handleOver()"
+        >
+    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3  max-w-7xl mx-auto gap-4 relative">
+        <div class="flex select-none space-y-1 p-4 gap-5">
+            <span class="text-base font-medium text-zinc-800 dark:text-zinc-50">{{ title }}</span>
+
+            {{ value }}
+
+        </div>
+    </div>
+</div>
