@@ -2,6 +2,13 @@
 
 Este projeto consiste em um sistema interativo para o gerenciamento de planos de telefonia, com foco no desenvolvimento front-end. O sistema inclui um dashboard rico em UX/UI, formulários intuitivos e uma experiência responsiva. O back-end é simulado utilizando JSON Server, permitindo que o desenvolvimento front-end seja o principal foco.
 
+## Preview 
+
+ **Dashboard**
+ 
+![image](https://github.com/user-attachments/assets/4b2cdbfb-c49d-4c85-9994-9353799eb044)
+
+
 ## Tecnologias Utilizadas
 
 - **Front-End:**
@@ -72,9 +79,7 @@ Este projeto consiste em um sistema interativo para o gerenciamento de planos de
     
     npm install
 
-    json-server --watch db.json
-
-    ng serve
+    json-server --watch db.json && ng serve
     ```
 
 ### O backend será aberta na porta:3000 acesse <http://localhost:3000>
