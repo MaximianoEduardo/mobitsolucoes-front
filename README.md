@@ -1,59 +1,82 @@
-# MobitsolucoesFront
+# Sistema de Gerenciamento de Planos de Telefonia
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+Este projeto consiste em um sistema interativo para o gerenciamento de planos de telefonia, com foco no desenvolvimento front-end. O sistema inclui um dashboard rico em UX/UI, formulários intuitivos e uma experiência responsiva. O back-end é simulado utilizando JSON Server, permitindo que o desenvolvimento front-end seja o principal foco.
 
-## Development server
+## Tecnologias Utilizadas
 
-To start a local development server, run:
+- **Front-End:**
+  - [X] Angular 17+
+  - [X] Angular Material (ou outra biblioteca de UI moderna)
+  - [X] Biblioteca de gráficos: amCharts
+  - [X] CSS Responsivo: Grid/Flexbox, Tailwind (diferencial)
+  - [X] Gerenciamento de estado: Services, RxJS (NgRx é um plus)
 
-```bash
-ng serve
-```
+- **Back-End Simulado:**
+  - [X] JSON Server (ou outra API mockada no Angular)
+  - [X] Arquivo `db.json` para simular os dados do backend
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Funcionalidades
 
-## Code scaffolding
+### 1. Dashboard Interativo
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [X] **Gráfico de Pizza:** Proporção de clientes por plano.
+- [X] **Gráfico de Barras:** Clientes cadastrados por mês no último ano.
+- [X] **Indicadores Numéricos (Cards estilizados):**
+  - [X] Total de clientes cadastrados.
+  - [X] Total de planos disponíveis.
+  - [X] Média de planos por cliente.
 
-```bash
-ng generate component component-name
-```
+**Extras (Opcionais):**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Filtros e Interatividade:
+  - Período dinâmico (últimos 30 dias, 6 meses, 1 ano).
+  - Filtro por tipo de plano.
+  - Animações e transições suaves.
 
-```bash
-ng generate --help
-```
+### 2. Gerenciamento de Planos
 
-## Building
+- **Formulário responsivo** para cadastro e edição (com validação e feedback visual).
+- **Tabela interativa:**
+  - Paginação e ordenação.
+  - Busca e filtros (por nome e preço).
+  - Ações rápidas (editar/excluir).
 
-To build the project run:
+### 3. Gerenciamento de Clientes
 
-```bash
-ng build
-```
+- **Formulário intuitivo** para cadastro e edição (com máscaras para CPF e telefone).
+- **Tabela interativa:**
+  - Busca e filtros (por nome e CPF).
+  - Paginação e ações rápidas.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 4. Associação de Clientes a Planos
 
-## Running unit tests
+- **Interface drag-and-drop** para associar clientes a planos (Diferencial).
+- **Listagem visual** de clientes e seus planos.
+- Permitir desassociar clientes de planos.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Como Rodar o Projeto
 
-```bash
-ng test
-```
+### Pré-requisitos
 
-## Running end-to-end tests
+- Node.js instalado
+- Angular CLI instalado (`npm install -g @angular/cli`)
+- JSON Server instalado (`npm install -g json-server`)
 
-For end-to-end (e2e) testing, run:
+### Passos para Execução
 
-```bash
-ng e2e
-```
+1. **Clone o repositório:**
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+   ```bash
+    git clone https://github.com/seu-usuario/seu-repositorio.git
+    cd seu-repositorio
+    
+    npm install
 
-## Additional Resources
+    json-server --watch db.json
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    ng serve
+    ```
+
+### O backend será aberta na porta:3000 acesse <http://localhost:3000>
+
+### O Front será sera aberta na pagina 4200- acesse <http://localhost:4200>
