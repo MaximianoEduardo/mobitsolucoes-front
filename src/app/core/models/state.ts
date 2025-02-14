@@ -7,9 +7,11 @@ export interface AppState {
   clientes: Cliente[];
   planos: Plano[];
   clientesPlanos: ClientePlano[];
-  dashboard: {
-    totalClientes: number;
-    totalPlanos: number;
-    clientesPorPlano: { [planoId: string]: number };
-  };
+  dashboard: Dashboard;
+}
+
+export interface Dashboard{
+  totalClientes: number;
+  totalPlanos: number;
+  clientesPorPlano: { [planoNome: string]: number };
 }
