@@ -8,18 +8,18 @@ import { Plano } from '../../../core/models/planos.model';
 import { AppState } from '../../../core/models/state';
 import { carregarClientes, carregarPlanos, carregarClientesPlanos, atualizarDashboard } from '../store/dashboard.actions';
 import { selectClientes, selectPlanos, selectClientesPlanos, selectTotalClientes, selectTotalPlanos, selectClientesPorPlano, selectAllDataLoaded } from '../store/dashboard.selector';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { CardsComponent } from '../../shared/ui/cards/cards.component';
 import { ChartPieComponent } from "../../shared/ui/chart-pie/chart-pie.component";
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ChartBarsComponent } from "../../shared/ui/chart-bars/chart-bars.component";
+import { CardsGridComponent } from "../../shared/ui/cards-grid/cards-grid.component";
 
 @Component({
   selector: 'app-dashboard',
   imports: [SideBarModule,
     CommonModule,
-    CardsComponent, ChartPieComponent, ChartBarsComponent],
+    ChartPieComponent, ChartBarsComponent, CardsGridComponent],
   providers: [HttpClient],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -38,6 +38,18 @@ export class DashboardComponent {
       totalPlanos: this.totalPlanos(),
       clientesPorPlano: this.clientesPlanos()
     };
+  });
+  
+  cardsTitle = {
+    'totalClientes': 'Total de Clientes: ',
+    'totalPlanos': 'Total de Planos: ',
+    'media' : 'Média de planos por cliente: '
+  }
+
+  mediaPlanosPorCliente = computed(() => {
+    const totalClientes = this.totalClientes();
+    const totalPlanos = this.totalPlanos();
+    return totalClientes > 0 ? totalPlanos / totalClientes : 0;
   });
 
   constructor(private store: Store<AppState>) {
