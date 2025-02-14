@@ -13,22 +13,22 @@ export class SidebarBodyComponent {
   links: linkInterface[] = [
     {
       label: "Dashboard",
-      href: "#",
+      href: "/",
       icon: "dashboard",
     },
     {
       label: "Planos",
-      href: "#",
+      href: "/planos",
       icon: "event_note"  ,
     },
     {
       label: "Clientes",
-      href: "#",
+      href: "/clientes",
       icon: "manage_accounts",
     },
     {
       label: "Clientes a Planos",
-      href: "#",
+      href: "",
       icon: "swipe_vertical",
     },
   ];
