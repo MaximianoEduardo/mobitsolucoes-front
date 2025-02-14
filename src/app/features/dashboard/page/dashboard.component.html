@@ -1,59 +1,39 @@
 <div class="rounded-md flex flex-col md:flex-row h-screen
     bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border 
-    border-neutral-200 dark:border-neutral-700 overflow-hidden">
+    border-neutral-200 dark:border-neutral-700 ">
     <app-sidebar>
 
     </app-sidebar>
     <div class="flex flex-1">
         <div class="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
-
-
-          <div class="grid grid-cols-2 p-10 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-10">
             <app-cards-grid 
-            [title]="cardsTitle.totalClientes" 
-            [value]="totalClientes()" 
-          />
-
-          <app-cards-grid 
-            [title]="cardsTitle.totalPlanos" 
-            [value]="totalPlanos()" 
-          />
-
-          <app-cards-grid 
-            [title]="cardsTitle.media" 
-            [value]="mediaPlanosPorCliente()" 
-          />
-
+              [title]="cardsTitle.totalClientes" 
+              [value]="totalClientes()" 
+            />
+            <app-cards-grid 
+              [title]="cardsTitle.totalPlanos" 
+              [value]="totalPlanos()" 
+            />
+            <app-cards-grid 
+              [title]="cardsTitle.media" 
+              [value]="mediaPlanosPorCliente()" 
+            />
           </div>
-          
-          
-          
-          <div class="flex flex-row p-2 w-full h-full gap-10">
-
-            <div class="flex flex-col w-3/4 gap-2 align-content-center">
-              <h2 class="text-xl font-semibold font-stretch-expanded">  Proporção de clientes por plano </h2>
-              <div class="w-5/6 p-6 border-1 border-solid rounded-2xl shadow-2xs">
-
-              
-                <app-chart-pie [clientesPorPlano]="clientesPorPlano()"></app-chart-pie>
-      
+          <div class="flex flex-col md:flex-row p-2 w-full h-full gap-10">
+            <div class="flex flex-col w-full md:w-3/4 gap-2 align-content-center">
+              <h2 class="text-xl font-semibold font-stretch-expanded">Proporção de clientes por plano</h2>
+              <div class="w-full md:w-5/6 p-6 border-1 border-solid rounded-2xl shadow-2xs">
+          <app-chart-pie [clientesPorPlano]="clientesPorPlano()"></app-chart-pie>
               </div>
             </div>
-            
-            <div class="flex flex-col w-3/4 gap-2">
-              <h2 class="text-xl font-semibold font-stretch-expanded">  Clientes cadastrados por mês no último ano </h2>
-              <div class=" w-5/6 p-6 border-1 border-solid rounded-2xl shadow-2xs">
-            
-                <app-chart-bars [clientes]="clientes()"></app-chart-bars>
-    
-      
+            <div class="flex flex-col w-full md:w-3/4 gap-2">
+              <h2 class="text-xl font-semibold font-stretch-expanded">Clientes cadastrados por mês no último ano</h2>
+              <div class="w-full md:w-5/6 p-6 border-1 border-solid rounded-2xl shadow-2xs">
+          <app-chart-bars [clientes]="clientes()"></app-chart-bars>
               </div>
             </div>
-
-            
-            
           </div>
-        
         </div>
     </div>
 </div>
