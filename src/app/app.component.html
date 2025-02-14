@@ -1,7 +1,10 @@
-
 <main class="main h-screen">
-  <app-dashboard />
+  <div class="rounded-md flex w-full flex-col md:flex-row h-screen
+    bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border 
+    border-neutral-200 dark:border-neutral-700 ">
+    <app-sidebar></app-sidebar>
+    <router-outlet />
+
+  </div>
 </main>
 
-
-<router-outlet />

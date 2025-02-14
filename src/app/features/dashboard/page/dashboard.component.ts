@@ -22,7 +22,7 @@ import { CardsGridComponent } from "../../shared/ui/cards-grid/cards-grid.compon
     ChartPieComponent, ChartBarsComponent, CardsGridComponent],
   providers: [HttpClient],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   clientes: Signal<Cliente[]>;
@@ -61,7 +61,7 @@ export class DashboardComponent {
     this.clientesPorPlano = toSignal(this.store.select(selectClientesPorPlano), { initialValue: {} ,});
     this.allDataLoaded = toSignal(this.store.select(selectAllDataLoaded), { initialValue: false });
 
-
+    console.log('Chamou')
     effect(() => {
       if (this.allDataLoaded()) {
         console.log('Todos os dados foram carregados:', this.combinedData());
