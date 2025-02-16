@@ -85,3 +85,25 @@ Este projeto consiste em um sistema interativo para o gerenciamento de planos de
 ### O backend será aberta na porta:3000 acesse <http://localhost:3000>
 
 ### O Front será sera aberta na pagina 4200- acesse <http://localhost:4200>
+
+# Decisões Técnicas 
+
+## Front-end 
+
+#### AmCharts5
+- Excelente performance com grandes conjuntos de dados
+- Gráficos altamente customizáveis
+
+#### Ngrx
+
+  - Previsibilidade do fluxo de dados
+  - Facilita o rastreamento de mudanças de estado
+  - Ideal para interações assíncronas
+
+#### Tailwind 
+ - Produtividade no desenvolvimento UI
+ - Fácil manutenção
+
+## Back-End Simulado
+### JSON Server
+ - Arquivo db.json simula os dados do backend.
